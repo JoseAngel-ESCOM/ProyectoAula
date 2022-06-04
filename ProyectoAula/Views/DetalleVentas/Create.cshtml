@@ -1,0 +1,41 @@
+﻿@model ProyectoAula.Models.DetalleVenta
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container-fluid">
+
+<h1 class="vent">Ventas</h1>
+
+<h4 class="text-primary">Crear</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Producto_ID" class="control-label">Nombre de Producto</label>
+                <select asp-for="Producto_ID" class ="form-control" asp-items="ViewBag.Producto_ID"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Cantidad" class="control-label"></label>
+                <input asp-for="Cantidad" class="form-control" type="number" min= "1" />
+                <span asp-validation-for="Cantidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,56 @@
+﻿@model Usuario
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+
+    @*------ GOOGLEAR ====> form bootstrap 5 ----------------*@
+
+    <div class="container-fluid">
+<div class="row mt-5">
+    <div class="col-sm-4 offset-sm-4" >
+        <div class="col-md-9 col-lg-6 col-xl-5" >
+            <img src="https://cdn-icons-png.flaticon.com/512/3596/3596081.png"
+                class="img-fluid" alt="Sample image">
+        </div>
+        <hr />
+
+        <form asp-controller="Acceso" asp-action="Index" method="post">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" asp-for="Correo" required>
+                @*<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>*@
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" asp-for="Clave" required>
+              </div>
+             @* <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div>*@
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                <a asp-action="Registrar" class="btn btn-link">Registrarme</a>
+              </div>
+        </form>
+
+
+    </div>
+</div>
+</div>
+
+  
+
+</body>
+   <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</html>

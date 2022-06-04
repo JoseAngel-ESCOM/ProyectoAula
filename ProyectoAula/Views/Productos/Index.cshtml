@@ -1,0 +1,129 @@
+﻿@model IEnumerable<ProyectoAula.Models.Productos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Styles{
+    <link href="~/lib/datatables.net-bs4/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <style>
+        table.dataTable thead{
+            background-image: linear-gradient(to right, #00c6ff 0%, #0072ff 51%, #00c6ff 100%);
+            color:white;
+        }
+    </style>
+}
+
+<div class="container-fluid">
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800 prod">Inventario</h1>
+        <a asp-action="Create" class="d-sm-inline-block btn btn-sm btn-prod shadow-sm"><i class="far fa-plus-square"></i></a>
+    </div>
+
+     <div class="card shadow mb-4">
+         <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Lista de productos</h6>
+         </div>
+         
+         <div class="card-body">
+            <div class="table-responsive">                 
+                <table class="table table-bordered" id="example" width="100%" cellspacing="0">
+                     <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Producto_Nombre)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Marca)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Division)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Categoria)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Color)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Talla)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Stock)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Precio_Compra)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Precio_Venta)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Total)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                     <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto_Nombre)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Division)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Talla)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio_Compra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio_Venta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                <a style="color: #ffac44;" asp-action="Edit" asp-route-id="@item.Producto_ID"><i class="fas fa-edit"></i></a> |
+                <a style="color: #0082ca;" asp-action="Details" asp-route-id="@item.Producto_ID"><i class="fas fa-info-circle"></i></a> |
+                <a style="color: #dd4b39;" asp-action="Delete" asp-route-id="@item.Producto_ID"><i class="fas fa-trash-alt"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+                </table>
+             </div>
+        </div>
+    </div>
+    </div>
+
+    @section Scripts{
+    <script src="~/lib/datatables.net/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables.net-bs4/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+          $('#example').DataTable({
+            "language": {
+              "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            }
+          });
+        });
+    </script>
+}

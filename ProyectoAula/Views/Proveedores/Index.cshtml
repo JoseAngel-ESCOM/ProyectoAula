@@ -1,0 +1,91 @@
+﻿@model IEnumerable<ProyectoAula.Models.Proveedores>
+
+@{
+
+    ViewData["Title"] = "Index";
+}
+
+@section Styles{
+    <link href="~/lib/datatables.net-bs4/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <style>
+        table.dataTable thead{
+            background-image: radial-gradient( circle farthest-corner at -8.9% 51.2%, rgba(255,124,0,1) 0%, rgba(255,124,0,1) 15.9%, rgba(255,163,77,1) 15.9%, rgba(255,163,77,1) 24.4%, rgba(19,30,37,1) 24.5%, rgba(19,30,37,1) 66% );
+            color:white;
+        }
+    </style>
+}
+
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800 prov">Proveedores</h1>
+        <a asp-action="Create" class="d-sm-inline-block btn btn-sm btn-prov shadow-sm"><i class="far fa-plus-square"></i></a>
+    </div>
+
+
+
+       <div class="card shadow mb-4">
+         <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Lista de ventas</h6>
+         </div>
+         
+         <div class="card-body">
+            <div class="table-responsive">                 
+                <table class="table table-bordered" id="example" width="100%" cellspacing="0">
+                    <thead>
+                         <tr>
+                             <th>
+                                @Html.DisplayNameFor(model => model.RazonSocial)                  
+                             </th>
+                             <th>
+                                 @Html.DisplayNameFor(model => model.Telefono)                 
+                             </th>
+                             <th>
+                                 @Html.DisplayNameFor(model => model.Correo)
+                             </th>
+                             <th></th>
+                          </tr>                 
+                     </thead>
+                    <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RazonSocial)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Telefono)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Correo)
+                            </td>
+                            <td>
+                                <a style="color: #ffac44;" asp-action="Edit" asp-route-id="@item.Proveedores_ID"><i class="fas fa-edit"></i></a> |
+                                <a style="color: #0082ca;" asp-action="Details" asp-route-id="@item.Proveedores_ID"><i class="fas fa-info-circle"></i></a> |
+                                <a style="color: #dd4b39;" asp-action="Delete" asp-route-id="@item.Proveedores_ID"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>  
+                    }
+                </tbody>
+                 </table>
+             </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    <script src="~/lib/datatables.net/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables.net-bs4/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+          $('#example').DataTable({
+            "language": {
+              "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            }
+          });
+        });
+    </script>
+}
+    
